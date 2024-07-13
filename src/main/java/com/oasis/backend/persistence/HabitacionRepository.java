@@ -8,6 +8,7 @@ import com.oasis.backend.persistence.mapper.RoomMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +43,11 @@ public class HabitacionRepository implements RoomRepository {
     public void deleteRoomById(int roomId) {
         habitacionCrudRepository.deleteById(roomId);
 
+    }
+
+    @Override
+    public List<Room> findHabitacionesDisponibles(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+        List<Habitacion> habitaciones = habitacionCrudRepository.findHabitacionesDisponibles(fechaInicio,fechaFin);
+        return mapper.toRooms(habitaciones);
     }
 }

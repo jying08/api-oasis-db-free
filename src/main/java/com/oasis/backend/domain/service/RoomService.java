@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDateTime;
 
 @Service
 public class RoomService {
@@ -35,6 +36,10 @@ public class RoomService {
             roomRepository.deleteRoomById(roomId);
             return true;
         }).orElse(false);
+    }
+    public List<Room> findHabitacionesDisponibles(LocalDateTime fechaInicio, LocalDateTime fechaFin)
+    {
+        return roomRepository.findHabitacionesDisponibles(fechaInicio,fechaFin);
     }
 
 }
